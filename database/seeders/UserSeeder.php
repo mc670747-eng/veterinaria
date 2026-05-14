@@ -22,5 +22,15 @@ class UserSeeder extends Seeder
                 'rol'      => 'administrador',
             ]
         );
+
+        User::firstOrCreate(
+            ['email' => 'vet@vet.com'],
+            [
+                'name'     => 'Veterinario',
+                'email'    => 'vet@vet.com',
+                'password' => Hash::make('vet'),
+                'rol'      => 'veterinario',
+            ]
+        );
     }
 }

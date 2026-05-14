@@ -21,9 +21,14 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($credenciales)) {
-            return to_route('home');
+            $user = Auth::user();
+            if ($user->rol === 'administrador') {
+                return to_route('admin.home');
+            } else {
+                return to_route('home');
+            }
         } else {
-            return to_route('login');
+            return to_route('login')->with('error', 'Credenciales incorrectas');
         }
     }
 
